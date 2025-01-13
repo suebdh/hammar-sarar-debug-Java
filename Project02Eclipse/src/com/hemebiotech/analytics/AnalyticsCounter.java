@@ -3,14 +3,12 @@ package com.hemebiotech.analytics;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
 /**
- * This class will read a file, count occurrences of three symptoms ("headache", "rash", "pupils"),
+ * This class will read a file, count occurrences of three symptoms ("headache", "rash", "dialated pupils"),
  *  and write the results in an output file.
  */
 public class AnalyticsCounter {
@@ -27,10 +25,11 @@ public class AnalyticsCounter {
         String inputFile = "symptoms.txt";
         String outputFile = "result.out";
 
-
-        //Step 1 : Read symtoms from input file
+        //Step 1 : Read symtoms from an input file
         try {
             ISymptomReader reader = new ReadSymptomDataFromFile(inputFile);
+            ISymptomWriter writer = new WriteSymptomDataToFile(outputFile);
+
             List<String> symptoms = reader.getSymptoms();
 
             // Step 2: Count occurrences of each symptom
@@ -41,7 +40,6 @@ public class AnalyticsCounter {
                     rashCount++;
                 } else if (symptom.contains("dialated pupils")) {
                     pupilCount++;
-
                 }
             }
         } catch (IOException e) {
