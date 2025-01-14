@@ -13,10 +13,6 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 
     String outputFile = "result.out";
 
-    public WriteSymptomDataToFile(String outputFile) {
-        this.outputFile = outputFile;
-    }
-
     @Override
     /**
      * This method write symptoms with their quantities in the file result.out .

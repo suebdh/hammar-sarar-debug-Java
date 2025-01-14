@@ -55,9 +55,9 @@ public class AnalyticsCounter {
         Map<String, Integer> symtomsWithOccurrences = new HashMap<>();
         for (String symtom : symptoms) {
             if (symtomsWithOccurrences.containsKey(symtom)) {
-                symtomsWithOccurrences.put(symtom, 1);
+                symtomsWithOccurrences.put(symtom, symtomsWithOccurrences.get(symtom) + 1);
             } else {
-                symtomsWithOccurrences.replace(symtom, symtomsWithOccurrences.get(symtom) + 1);
+                symtomsWithOccurrences.put(symtom, 1);
             }
         }
         return symtomsWithOccurrences;
@@ -87,46 +87,47 @@ public class AnalyticsCounter {
         writer.writeSymptoms(symptoms);
     }
 
-    public static void main(String args[]) throws Exception {
-
-        // Specify the input and output files
-        String inputFile = "symptoms.txt";
-        String outputFile = "result.out";
-
-        //Step 1 : Read symtoms from an input file
-        try {
-            ISymptomReader reader = new ReadSymptomDataFromFile(inputFile);
-            ISymptomWriter writer = new WriteSymptomDataToFile(outputFile);
-
-            List<String> symptoms = reader.getSymptoms();
-
-            // Step 2: Count occurrences of each symptom
-            for (String symptom : symptoms) {
-                if (symptom.equals("headache")) {
-                    headacheCount++;
-                } else if (symptom.equals("rash")) {
-                    rashCount++;
-                } else if (symptom.contains("dialated pupils")) {
-                    pupilCount++;
-                }
-            }
-        } catch (IOException e) {
-            logger.error("Erreur de Input File");
-        }
-        //TO DO Step 3 : Symtoms ordered alphabatically
-
-        // TO DO Step 4 : write result to the output file
-        try {
-            FileWriter writer = new FileWriter(outputFile);
-            writer.write("headache: " + headacheCount + "\n");
-            writer.write("rash: " + rashCount + "\n");
-            writer.write("dialated pupils: " + pupilCount);
-            writer.close();
-        } catch (IOException e) {
-            logger.error("Erreur de Output File");
-        }
-
-    }
+    // Ce programme est mis en commentaire car désormais la classe Main mise à part suit ce process
+//    public static void main(String args[]) throws Exception {
+//
+//        // Specify the input and output files
+//        String inputFile = "symptoms.txt";
+//        String outputFile = "result.out";
+//
+//        //Step 1 : Read symtoms from an input file
+//        try {
+//            ISymptomReader reader = new ReadSymptomDataFromFile(inputFile);
+//            ISymptomWriter writer = new WriteSymptomDataToFile();
+//
+//            List<String> symptoms = reader.getSymptoms();
+//
+//            // Step 2: Count occurrences of each symptom
+//            for (String symptom : symptoms) {
+//                if (symptom.equals("headache")) {
+//                    headacheCount++;
+//                } else if (symptom.equals("rash")) {
+//                    rashCount++;
+//                } else if (symptom.contains("dialated pupils")) {
+//                    pupilCount++;
+//                }
+//            }
+//        } catch (IOException e) {
+//            logger.error("Erreur de Input File");
+//        }
+//        //TO DO Step 3 : Symtoms ordered alphabatically
+//
+//        // TO DO Step 4 : write result to the output file
+//        try {
+//            FileWriter writer = new FileWriter(outputFile);
+//            writer.write("headache: " + headacheCount + "\n");
+//            writer.write("rash: " + rashCount + "\n");
+//            writer.write("dialated pupils: " + pupilCount);
+//            writer.close();
+//        } catch (IOException e) {
+//            logger.error("Erreur de Output File");
+//        }
+//
+//    }
 
 
 }
