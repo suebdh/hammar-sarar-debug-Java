@@ -34,6 +34,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
      */
     @Override
     public List<String> getSymptoms() throws IOException {
+        // ArrayList since the number of String can change dynamically
         ArrayList<String> result = new ArrayList<String>();
 
         if (filepath != null) {
@@ -50,10 +51,9 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
             } catch (FileNotFoundException e) {
                 logger.error("Fichier non trouvé");
             } catch (IOException e) {
-                logger.error(e.getMessage());
+                logger.error("Erreur lors de la lecture du fichier" + e.getMessage());
             }
         }
-
         return result;
     }
 
